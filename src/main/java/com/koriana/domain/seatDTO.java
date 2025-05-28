@@ -16,4 +16,6 @@ public class seatDTO {
 	public void setSeat_name(String seat_name) {
 		this.seat_name = seat_name;
 	}
+	
+
 }

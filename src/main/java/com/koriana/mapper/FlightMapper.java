@@ -10,7 +10,7 @@ import com.koriana.domain.flightDTO;
 @Mapper
 public interface FlightMapper {
 	public List<flightDTO> searchFlights(@Param("departure") String departure,
-										 @Param("arrival")String arrvial,
-										 @Param("date")String date,
+										 @Param("arrival")String arrival,
+										 @Param("departureTime")String departureTime,
 										 @Param("seatCode") String seatCode);
 }

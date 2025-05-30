@@ -14,7 +14,7 @@ public class FlightService {
 	@Autowired
 	private FlightMapper FlightMapper;
 	
-	public List<flightDTO> searchFlights(String departure, String arrival, String date, String seatCode){
-		return FlightMapper.searchFlights(departure, arrival, date, seatCode);
+	public List<flightDTO> searchFlights(String departure, String arrival, String departureTime, String seatCode){
+		return FlightMapper.searchFlights(departure, arrival, departureTime, seatCode);
 	}
 }

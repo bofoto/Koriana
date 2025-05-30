@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koriana.mapper.FlightMapper">
 
-	<select id ="searchFlights" resultType="com.koriana.domain.flightDTO">
+	<select id ="searchFlights" resultType="flightDTO">
 		SELECT *
 		FROM flight
 		WHERE departure = #{departure}
 		  AND arrival = #{arrival}
-		  AND DATE(departure_time) = #{date}
+		  AND DATE(departure_time) = #{departureTime}
 		  AND seat_code = #{seatCode}
 	
 	</select>

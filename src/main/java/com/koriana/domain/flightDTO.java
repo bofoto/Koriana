@@ -11,7 +11,7 @@ public class flightDTO {
 	private LocalDateTime departureTime;
 	private LocalDateTime arrivalTime;
 	private String seatCode;
-	private int availableSeat;
+	private int availableSeats;
 	
 	public int getFlightIdx() {
 		return flightIdx;
@@ -55,11 +55,11 @@ public class flightDTO {
 	public void setSeatCode(String seatCode) {
 		this.seatCode = seatCode;
 	}
-	public int getAvailableSeat() {
-		return availableSeat;
+	public int getAvailableSeats() {
+		return availableSeats;
 	}
-	public void setAvailableSeat(int availableSeat) {
-		this.availableSeat = availableSeat;
+	public void setAvailableSeats(int availableSeats) {
+		this.availableSeats = availableSeats;
 	}
 	
 	

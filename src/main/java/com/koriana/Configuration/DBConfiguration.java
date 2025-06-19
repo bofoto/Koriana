@@ -24,20 +24,20 @@ public class DBConfiguration {
 	
 	@Bean												//Bean: Spring에 의하여 생성하고 관리하는 객체
 	@ConfigurationProperties(prefix = "spring.datasource.hikari")
-	public HikariConfig hikariconfig(){
+	public HikariConfig hikariConfig(){
 		return new HikariConfig();
 	}
 	
 	@Bean
 	public DataSource dataSource() {
-		return new HikariDataSource(hikariconfig());
+		return new HikariDataSource(hikariConfig());
 	}
 	
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception{
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		factoryBean.setMapperLocations(ApplicationContext.getResources("classpath:/mappers/**/*Mapper.xml"));
+		factoryBean.setMapperLocations(ApplicationContext.getResources("classpath:/mappers/**/*.xml"));
 		factoryBean.setTypeAliasesPackage("com.koriana.*");
 		factoryBean.setConfiguration(mybatisConfig());
 		return factoryBean.getObject();

@@ -9,7 +9,11 @@ public class ViewController {
 	
 	@GetMapping("/flights")
 	public String openView() {
-		return "home";
+		return "koriana/home";
 	}
 	
+	@GetMapping("/flights/test")
+	public String openTest() {
+		return "koriana/test";
+	}
 }

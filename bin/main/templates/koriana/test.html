@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="koriana/layout/basic">
+<th:block layout:fragment="title">
+	        <title>This page is a Test page</title>
+</th:block>
+<th:block layout:fragment="content">
+	<h1>This page is a Test page</h1>
+	<a th:href="@{/flights}" class="btn btn-primary waves-effect waves-light">Back</a>
+</th:block>
+</html>

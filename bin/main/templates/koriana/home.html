@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="koriana/layout/basic">
+
+
+<th:block layout:fragment="content">
+
+
+	<h2>항공편 검색</h2>
+
+	<div class="booking-new-wrap">
+		<div class="booking-new-seperate -itinerary">
+			<div class="booking-new-items">
+				<div class="booking-new-item">
+					<div class="booking-new-aligner">
+						<div class="booking-new-aligner-inner">
+							<label class=>출발지:<br>
+								<select class="form-select form-select-lg" id="departure">
+									<option value="PUS">부산</option>
+								</select>
+							</label>
+							<label>도착지:<br>
+								<select class="form-select form-select-lg" id="arrival">
+									<option value="ICN">인천</option>
+									<option value="CJU">제주</option>
+								</select>
+							</label>
+						</div>
+					</div>
+					<div class="booking-new-aligner-s">
+						<div class="booking-new-aligner-s-inner">
+							<label >출발일<br>
+								<input class="form-select form-select-lg" type="date" id="departureTime">
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="booking-new-options">
+			<label>좌석등급:
+				<select class="form-select form-select-lg" id="seatCode">
+					<option value="ECONOMY">일반석</option>
+					<option value="BUSINESS">비즈니스</option>
+				</select>
+			</label>
+		</div>
+	</div>
+
+
+
+	<div>
+		<table id="resultTable" class="table-bordered table-striped table-hover table col">
+			<thead>
+				<tr>
+					<th>편명</th>
+					<th>출발지</th>
+					<th>도착지</th>
+					<th>출발날짜</th>
+					<th>도착날짜</th>
+					<th>남은 좌석</th>
+
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+
+
+	<div class="text-center">
+		<button onclick="searchFlights()" class="btn btn-default btn-rounded">검색</button>
+	</div>
+
+	<th:block>
+		<a th:href="@{/flights/test}" class="btn btn-primary waves-effect waves-light">List</a>
+	</th:block>
+</th:block>
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+		function find() {
+			const departureTime = document.getElementById('departureTime').value;
+			console.log(departureTime)
+
+			var a = departureTime;
+
+			alert("departureTime은" + a + "입니다.")
+		}
+
+		async function searchFlights() {
+			const departure = document.getElementById('departure').value;
+			const arrival = document.getElementById('arrival').value;
+			const departureTime = document.getElementById('departureTime').value;
+			const seatCode = document.getElementById('seatCode').value;
+
+
+			const url = `/flights/search?departure=${departure}&arrival=${arrival}&departureTime=${departureTime}&seatCode=${seatCode}`
+			const response = await fetch(url);
+
+			// 정상 출력
+			const flights = await response.json();
+			const tableBody = document.querySelector('#resultTable tbody');
+			tableBody.innerHTML = '';
+
+
+
+			flights.forEach(flight => {
+				const row = document.createElement('tr');
+				const dt = flight.departureTime;
+				const deStr = `${dt[0]}-${String(dt[1]).padStart(2, '0')}-${String(dt[2]).padStart(2, '0')}`;
+				const at = flight.departureTime;
+				const arStr = `${at[0]}-${String(at[1]).padStart(2, '0')}-${String(at[2]).padStart(2, '0')}`;
+
+
+				row.innerHTML = `
+	          <td>${flight.flightNumber}</td>
+	          <td>${flight.departure}</td>
+	          <td>${flight.arrival}</td>
+	          <td>${deStr}</td>
+	          <td>${arStr}</td>
+	          <td>${flight.availableSeats}</td>
+	        `;
+				tableBody.appendChild(row);
+			});
+
+
+
+
+
+		}
+	</script>
+</th:block>
+
+</html>

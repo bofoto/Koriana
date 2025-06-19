@@ -25,8 +25,9 @@ public class FlightController {
 										@RequestParam(value = "departureTime") String departureTime,
 										@RequestParam(value = "seatCode") String seatCode
 										){
+		
+		
 		return FlightService.searchFlights(departure, arrival, departureTime, seatCode);
 	}
-	
 	
 }
